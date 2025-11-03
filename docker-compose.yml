@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  minecraft-server:
+    image: itzg/minecraft-server:latest
+    container_name: minecraft-server # your container name
+
+    # Environment variables that help you configure your server, you can also override some server.properties, check https://docker-minecraft-server.readthedocs.io/en/latest/variables/ for all options
+    environment:
+      EULA: "TRUE"                          # it is mandatory to accept the EULA
+      TYPE: PAPER                           # server type
+      VERSION: "1.21"                       # Minecraft version
+      OVERRIDE_SERVER_PROPERTIES: "TRUE"    # to override server.properties with env vars
+      ENABLE_AUTOPAUSE: "TRUE"              # enable autopausing when no players are online to save resources
+      AUTOPAUSE_TIMEOUT_EST: "600"          # delay in seconds before entering autopausing
+      INIT_MEMORY: "1000M"                  # initial memory allocation
+      MEMORY: "1200M"                       # maximum memory allocation
+      MAX_TICK_TIME: "-1"                   # disable watchdog
+      ONLINE_MODE: "TRUE"                   # set to FALSE to allow cracked clients
+      WHITELIST: "TRUE"                     # enable whitelist
+      JVM_DD_OPTS: "disable.watchdog:true"  # disable watchdog
+
+    ports:
+      - "25565:25565" # Minecraft server port
+      - "8123:8123"   # Dynmap port, I used 8123, be consistent with minecraft.conf and your dynmap configuration.txt file
+
+    volumes:
+      - ./minecraft/data:/data
+      - ./minecraft/plugins:/data/plugins
+      - ./minecraft/mods:/data/mods
+      - ./minecraft/config:/data/config
+      - ./minecraft/world:/data/world
+      - ./minecraft/world_nether:/data/world_nether
+      - ./minecraft/world_the_end:/data/world_the_end
+
+    restart: always

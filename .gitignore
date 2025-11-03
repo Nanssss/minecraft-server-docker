@@ -1,0 +1,26 @@
+#Ignores data folder
+minecraft/data/*
+!minecraft/data/.gitkeep
+!minecraft/data/server.properties
+!minecraft/data/whitelist.json
+!minecraft/data/ops.json
+!minecraft/data/banned-ips.json
+!minecraft/data/banned-players.json
+
+#Ignores plugin folder
+minecraft/plugins/*
+!minecraft/plugins/.gitkeep
+
+#Ignores mods folder
+minecraft/mods/*
+!minecraft/mods/.gitkeep
+
+#Ignores world folders
+minecraft/world/*
+!minecraft/world/.gitkeep
+
+minecraft/world_nether/*
+!minecraft/world_nether/.gitkeep
+
+minecraft/world_the_end/*
+!minecraft/world_the_end/.gitkeep
